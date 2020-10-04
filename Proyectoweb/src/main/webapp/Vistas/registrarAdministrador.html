@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Registrar Admin</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="envoltura">
+	<div class="titulo">
+		<h1>Registro</h1>
+	</div>
+	<div class="formulario">
+		<div class="entradas">
+			<label> Nombre completo: </label>
+			<input type="text" class="input" name="nombre">
+		</div>
+		<div class="entradas">
+			<label> Contraseña: </label>
+			<input type="password" class="input" name="pass">
+		</div>
+		<div class="entradas">
+			<label> Confirmar contraseña: </label>
+			<input type="password" class="input" name="confirm">
+		</div>
+		<div class="entradas">
+			<label> Sexo: </label>
+			<div class="custom__select">
+				<select>
+					<option value="">Seleccionar</option>
+					<option value="Hombre">Hombre</option>
+					<option value="Mujer">Mujer</option>
+				</select>
+			</div>
+		</div>
+		<div class="entradas">
+			<label> E-mail: </label>
+			<input type="email" class="input" name="email">
+		</div>
+		<div class="entradas">
+			<label> Telefono: </label>
+			<input type="text" class="input" name="telefono">
+		</div>
+		<div class="entradas">
+			<label> Direccion: </label>
+			<textarea class="textarea"  name="descripcion"></textarea>
+		</div>
+		
+		<div class="entradas">
+			<label> Codigo postal: </label>
+			<input type="text" class="input" name="postal">
+		</div>
+		<div class="enviar">
+			<input type="submit" value="Registrar" class="boton">
+		</div>
+	</div>
+</div>
+    </body>
+</html>

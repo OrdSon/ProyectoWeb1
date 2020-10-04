@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
+}
+
+body{
+	background: pink;/*Color de todo el fondo*/
+	padding: 0 10px;
+}
+/*selecciona todo dentro de "envoltura" y cambia su 
+estilo*/
+.envoltura{
+	max-width: 500px;/*ancho maximo de caja*/
+	width: 100%;  	 /*porcentaje de ancho*/
+	background: #fff; /*color de fondo de caja*/
+	margin: 30px auto; /*margen*/
+	padding: 30px;
+	box-shadow: 1px 1px 2px rgba(0,0,0,0.125);/*sombra de la caja (buenisimo jajaja)*/
+}
+
+.envoltura .titulo{
+	font-size: 20px;
+	font-weight: 600px;
+	margin-bottom: 30px;
+	color: pink;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.envoltura .formulario{
+	width: 100%;
+}
+
+.envoltura .formulario .entradas{
+	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
+}
+
+.envoltura .formulario .entradas label{
+	width: 200px;
+	color: #757575;
+	margin-right: 10px;
+	font-size: 14px;
+}
+
+.envoltura .formulario .entradas .input
+,.envoltura .formulario .entradas .textarea{
+	width: 100%;
+	outline: none;
+	border: 2px solid #d5dbd9;
+	font-size: 15px;
+	padding: 5px 5px;
+	border-radius: 3px;
+	transition: all 0.3s ease;
+	height: 30px; 
+}
+
+.envoltura .formulario .entradas .textarea{
+	resize: none;
+	height: 30px;
+}
+
+.envoltura .formulario .entradas .custom__select{
+	position: relative;
+	width: 100%;
+	height: 30px;
+}
+
+.envoltura .formulario .entradas .custom__select select{
+	-webkit-appearance: none;
+	appearance: none;
+	border: 1px solid #d5dbd9;
+	width: 100%;
+	height: 100%;
+	border-radius: 3px; 
+}
+
+.envoltura .formulario .entradas .custom__select:before{
+	content: "";
+	position: absolute;
+	top: 12px;
+	right: 0;
+	border: 8px solid;
+	border-color: blue transparent transparent transparent;
+	pointer-events: none;
+}
+
+.envoltura .formulario .entradas input:focus{
+	border:2px solid lightgreen;
+}
+.envoltura .formulario .entradas .textarea:focus,
+.envoltura .formulario .entradas select:focus{
+	border:2px solid lightgreen;
+}
+
+.envoltura .formulario .entradas p{
+	font-size: 14px;
+	color: #757575;
+}
+
+.envoltura .formulario .enviar .boton{
+	width: 100%;
+	padding: 4px 5px;
+	font-size: 14px;
+	border: 0;
+	background: skyblue;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 3px;
+	outline: none;
+}
+
+
+.envoltura .formulario .entradas:last-child{
+	margin-bottom: 0;
+}
+
+.envoltura .formulario .enviar .boton:hover{
+	background: lightgreen;
+}

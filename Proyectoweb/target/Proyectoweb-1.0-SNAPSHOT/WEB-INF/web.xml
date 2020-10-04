@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>primeraPrueba</servlet-name>
+        <servlet-class>servlets.servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>labRegistrado</servlet-name>
+        <servlet-class>labRegistrado</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>primeraPrueba</servlet-name>
+        <url-pattern>/Ricardo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>labRegistrado</servlet-name>
+        <url-pattern>/labRegistrado</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>jdbc/Hospital</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+</web-app>
