@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 import javax.swing.JOptionPane;
 
@@ -40,5 +41,26 @@ public class Consulta extends Manager{
         }
         return true;
     
+    }
+    
+     public boolean validarEInsertar(HttpServletRequest request, DataSource dataSource,String precio) {
+        Especialidad especialidad = new Especialidad();
+
+        LinkedList<String> especialidades = especialidad.obtener(dataSource);
+        if (especialidades == null) {
+            JOptionPane.showMessageDialog(null, "Especialidades null?");
+            return false;
+        }
+        
+        for (int i = 0; i < especialidades.size(); i++) {
+            LinkedList<String> datos = new LinkedList<>();
+            String resultado = request.getParameter(especialidades.get(i));
+            if (resultado != null) {
+                datos.add(precio);
+                datos.add(especialidades.get(i));
+                crear(datos, dataSource);
+            }
+        }
+        return true;
     }
 }

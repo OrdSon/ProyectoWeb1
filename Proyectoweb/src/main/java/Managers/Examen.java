@@ -6,6 +6,7 @@
 package Managers;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
@@ -22,7 +23,7 @@ public class Examen extends Manager{
     }
     
     public boolean crear(LinkedList<String> datos, DataSource dataSource){
-        if (comprobarNull(datos)) {
+        
             String query = "INSERT INTO Examen (codigo, formato, orden, nombre, descripcion)"
                     + "VALUES (?,?,?,?,?)";
 
@@ -38,10 +39,27 @@ public class Examen extends Manager{
                 JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
                 return false;
             }
-        } else {
-            return false;
-        }
+        
         return true;
+    }
+    
+    public LinkedList obtenerOpciones(DataSource dataSource){
+        String query = "SELECT nombre FROM Examen";
+        LinkedList<String> opciones = new LinkedList<>();
+        try (PreparedStatement estado = dataSource.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS); 
+                ResultSet resultado = estado.executeQuery()) {
+            while (resultado.next()) {          
+                String opcion = resultado.getString(1);
+                opciones.add("<option value=\""+opcion+"\">"+opcion+"</option>");
+            }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+                return null;
+            }
+        if (opciones.isEmpty()) {
+            return null;
+        }
+        return opciones;
     }
     
 }

@@ -98,8 +98,7 @@ public class servlet extends HttpServlet {
                 ResultSet resultado = estado.executeQuery()) {
             ResultSetMetaData meta = resultado.getMetaData();
             int columnas = meta.getColumnCount();
-            int contador = 0;
-            Object[] filas = new Object[columnas];
+
             PrintWriter writer = response.getWriter();
             
             writer.print("<table>");
@@ -108,15 +107,12 @@ public class servlet extends HttpServlet {
                     + "     <th>contraseña</th>"
                     + "     <th>tipo</th>"
                     + "   </tr>");
-            
-            
-
             while (resultado.next()) {
                 writer.println("<tr>");
-                    for (int i = 0; i < filas.length; i++) {
+                    for (int i = 0; i <columnas; i++) {
                     writer.println("<td>" + resultado.getString(i+1) + "</td>");
                 }
-                contador++;
+
                 writer.println("</tr>");
             }
             

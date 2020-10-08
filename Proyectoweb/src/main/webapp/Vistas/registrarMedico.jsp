@@ -95,16 +95,16 @@
                                 LinkedList<String> especialidades = new LinkedList<>();
                                 try (PreparedStatement estado = dataSource.getConnection().prepareStatement(query);
                                         ResultSet resultado = estado.executeQuery()) {
-                                    
+
                                     while (resultado.next()) {
                                         String especialidad = resultado.getString(1);
-                                        out.print("<label><input type=\"checkbox\" name = \""+especialidad+"\"/>"+
-                        especialidad+"</label>");
+                                        out.print("<label><input type=\"checkbox\" name = \"" + especialidad + "\"/>"
+                                                + especialidad + "</label>");
                                     }
                                 } catch (SQLException e) {
                                     JOptionPane.showMessageDialog(null, e.getMessage());
-                                }                                
-                                
+                                }
+
                             %>
                         </div>
                     </div>

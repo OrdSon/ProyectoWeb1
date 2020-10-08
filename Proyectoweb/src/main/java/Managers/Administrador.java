@@ -21,9 +21,10 @@ public class Administrador extends Manager{
     public Administrador() {
     }
     
+    
     public boolean crear(LinkedList<String> datos, DataSource dataSource){
         
-         if (crearUsuario(datos, dataSource, "Laboratorista") && comprobarNull(datos)) {
+         if (crearUsuario(datos, dataSource, "Administrador") && comprobarNull(datos)) {
             String query = "INSERT INTO Administrador (Usuario_codigo, Usuario_contraseña, nombre, DPI)"
                     + " VALUES (?,?,?,?)";
 

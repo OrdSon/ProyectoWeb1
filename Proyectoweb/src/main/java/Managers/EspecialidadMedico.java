@@ -44,12 +44,12 @@ public class EspecialidadMedico extends Manager {
         }
         return true;
     }
-
+    
     public boolean validarEInsertar(HttpServletRequest request, DataSource dataSource,String codigo) {
         Especialidad especialidad = new Especialidad();
 
         LinkedList<String> especialidades = especialidad.obtener(dataSource);
-        if (especialidades == null) {
+        if (especialidades == null || especialidades.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Especialidades null?");
             return false;
         }

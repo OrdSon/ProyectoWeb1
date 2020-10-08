@@ -97,7 +97,7 @@ estilo*/
 
 .envoltura .formulario .entradas .textarea{
     resize: none;
-    height: 30px;
+    height: 80px;
 }
 
 .envoltura .formulario .entradas .custom__select{

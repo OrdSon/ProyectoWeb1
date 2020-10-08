@@ -34,10 +34,10 @@ and open the template in the editor.
     <body>
         <div class="envoltura">
             <div class="titulo">
-                <h1>Registrar laboratorista</h1>
+                <h1>Registrar Consulta</h1>
             </div>
             <div class="formulario">
-                <form name="form" method="post" action="../Registros/laboratoristaRegistrado.jsp">
+                <form name="form" method="post" action="../Registros/consultaRegistrada.jsp">
                     <div class="entradas">
                         <label> Especialidades: </label>
                         <div class="selectBox" onclick="showCheckboxes()" required>
@@ -62,11 +62,12 @@ and open the template in the editor.
                                 }
 
                             %>
+                            
                         </div>
                     </div>
                     <div class="entradas">
                         <label> Precio: </label>
-                        <input type="text" class="input" name="codigo" required>
+                        <input type="text" class="input" name="precio" required>
                     </div>
                     <div class="enviar">
                         <input type="submit" value="Registrar" class="boton">

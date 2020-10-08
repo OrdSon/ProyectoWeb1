@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../Estilos/estiloRegistrarMedico.css">
+    </head>
+    <body>
+
+        <div class="envoltura">
+            <div class="titulo">
+                <h1>Registrar examen</h1>
+            </div>
+            <div class="formulario">
+                <form name="form" method="post" action="../Registros/examenRegistrado.jsp">
+                    <div class="entradas">
+                        <label> Codigo: </label>
+                        <input type="text" class="input" name="codigo" required>
+                    </div>
+                    <div class="entradas">
+                        <label> Formato </label>
+                        <div class="custom__select">
+                            <select name="formato">
+                                <option value="png">PNG</option>
+                                <option value="jpeg">JPEG</option>
+                                <option value="pdf">PDF</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="entradas">
+                        <label> Orden: </label>
+                        <div class="custom__select">
+                            <select name="orden">
+                                <option value="true">true</option>
+                                <option value="false">false</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="entradas">
+                        <label> nombre: </label>
+                        <textarea class="textarea"  name="nombre"></textarea>
+                    </div>
+                    <div class="entradas">
+                        <label> Descripcion: </label>
+                        <textarea class="textarea"  name="descripcion"></textarea>
+                    </div>
+                    <div class="enviar">
+                        <input type="submit" value="Registrar" class="boton" >
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
