@@ -60,6 +60,7 @@ public class Medico extends Manager {
     public void buscarPorNombre(HttpServletRequest request, HttpServletResponse response, DataSource dataSource) {
         String nombre = request.getParameter("buscarNombre");
         String query = "SELECT Usuario_codigo, nombre, hora_inicio, hora_salida, email, DPI, numero_colegiado, fecha_debut FROM Medico WHERE nombre LIKE '%" + nombre + "%'";
+ 
         try (PreparedStatement estado = dataSource.getConnection().prepareStatement(query);
                 ResultSet resultado = estado.executeQuery()) {
             ResultSetMetaData meta = resultado.getMetaData();

@@ -44,11 +44,11 @@
                 } else {
                     response.getWriter().print("");
                 }
+                dataSource.getConnection().close(); 
             } catch (NamingException exe) {
-            }
-
-
+            }    
         %>
+        
         <div class="envoltura">
             <div class="titulo">
                 <h1>Usuario creado satisfactoriamente!</h1>

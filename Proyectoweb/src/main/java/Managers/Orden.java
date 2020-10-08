@@ -36,7 +36,6 @@ public class Orden extends Manager{
                 estado.executeUpdate();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-                return ;
             }
         
     }

@@ -45,6 +45,10 @@
             String nombre = request.getParameter("buscarNombre");
             String query = "SELECT  medico_tiene_especialidad.Especialidad_Titulo ,Medico.Usuario_codigo, Medico.nombre, Medico.hora_inicio, Medico.hora_salida, Medico.email, Medico.DPI, Medico.numero_colegiado, "
                     + "Medico.fecha_debut FROM Medico INNER JOIN  medico_tiene_especialidad ON medico_tiene_especialidad.Medico_Usuario_codigo = Medico.Usuario_codigo WHERE Medico.nombre LIKE '%" + nombre + "%'";
+            if (nombre == null || nombre.isBlank()) {
+                    query = "SELECT  medico_tiene_especialidad.Especialidad_Titulo ,Medico.Usuario_codigo, Medico.nombre, Medico.hora_inicio, Medico.hora_salida, Medico.email, Medico.DPI, Medico.numero_colegiado," 
+                    + "Medico.fecha_debut FROM Medico INNER JOIN  medico_tiene_especialidad ON medico_tiene_especialidad.Medico_Usuario_codigo = Medico.Usuario_codigo";
+                }
 
         %>
     </head>
@@ -264,6 +268,8 @@
                     divisor.style.display = "none";
                 }
             }
+                    
         </script>
+        <% dataSource.getConnection().close(); %>
     </body>
 </html>

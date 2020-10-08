@@ -163,6 +163,6 @@
                 background-color: #1e90ff;
             }
         </style>
-
+        <% dataSource.getConnection().close(); %>
     </body>
 </html>

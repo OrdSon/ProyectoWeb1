@@ -41,14 +41,14 @@
                 datos.add(request.getParameter("dpi"));
                 datos.add(request.getParameter("colegiado"));
                 datos.add(request.getParameter("fecha"));
-                System.out.println(request.getParameter("Neurologia")+" ESPECIALIDAD nueva");
-                if(especialidadMedico.validarEInsertar(request, dataSource, request.getParameter("codigo")) == false){
+                if (medico.crear(datos, dataSource) == false) {
+                    response.sendRedirect("error.html");
+                }else if(especialidadMedico.validarEInsertar(request, dataSource, request.getParameter("codigo")) == false){
                     response.sendRedirect("error.html");
                 }
-                else if (medico.crear(datos, dataSource) == false) {
-                    response.sendRedirect("error.html");
-                } 
-                
+                else {
+                }
+                dataSource.getConnection().close(); 
             } catch (NamingException exe) {
             }
         %>

@@ -20,33 +20,35 @@
     </head>
     Usuario_codigo, Usuario_contraseña, nombre, DPI, email, telefono, birth, sexo, peso, tipo_sangre
     <%  Paciente paciente = new Paciente();
-            LinkedList<String> datos = new LinkedList<>();
-            DataSource dataSource;
-            try {
+        LinkedList<String> datos = new LinkedList<>();
+        DataSource dataSource;
+        try {
 
-                Context initContext = new InitialContext();
-                Context envContext = (Context) initContext.lookup("java:/comp/env");
-                dataSource = (DataSource) envContext.lookup("jdbc/Hospital");
-                datos.add(request.getParameter("codigo"));
-                datos.add(request.getParameter("pass"));
-                datos.add(request.getParameter("nombre"));
-                datos.add(request.getParameter("dpi"));
-                datos.add(request.getParameter("email"));
-                datos.add(request.getParameter("telefono"));
-                datos.add(request.getParameter("fecha"));
-                datos.add(request.getParameter("sexo"));
-                datos.add(request.getParameter("peso"));
-                datos.add(request.getParameter("sangre"));
-                if (paciente.crear(datos, dataSource) == false) {
-                    response.sendRedirect("error.html");
-                } else {
-                    response.getWriter().print("");
-                }
-            } catch (NamingException exe) {
+            Context initContext = new InitialContext();
+            Context envContext = (Context) initContext.lookup("java:/comp/env");
+            dataSource = (DataSource) envContext.lookup("jdbc/Hospital");
+            datos.add(request.getParameter("codigo"));
+            datos.add(request.getParameter("pass"));
+            datos.add(request.getParameter("nombre"));
+            datos.add(request.getParameter("dpi"));
+            datos.add(request.getParameter("email"));
+            datos.add(request.getParameter("telefono"));
+            datos.add(request.getParameter("fecha"));
+            datos.add(request.getParameter("sexo"));
+            datos.add(request.getParameter("peso"));
+            datos.add(request.getParameter("sangre"));
+            if (paciente.crear(datos, dataSource) == false) {
+                response.sendRedirect("error.html");
+            } else {
+                response.getWriter().print("");
             }
+            dataSource.getConnection().close();
+        } catch (NamingException exe) {
+        }
 
 
-        %>
+    %>
+
     <h1>Paciente registrado!</h1>
-    </body>
+</body>
 </html>

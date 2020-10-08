@@ -36,6 +36,7 @@
                 } else {
                     response.getWriter().print("");
                 }
+                dataSource.getConnection().close(); 
             } catch (NamingException exe) {
             }
 

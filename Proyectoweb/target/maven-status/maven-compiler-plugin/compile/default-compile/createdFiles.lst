@@ -9,6 +9,7 @@ Managers/Paciente.class
 Managers/Examen.class
 Managers/Especialidad.class
 Managers/Administrador.class
+Managers/Reporte.class
 Managers/Manager.class
 Managers/Orden.class
 Constantes/Constantes.class

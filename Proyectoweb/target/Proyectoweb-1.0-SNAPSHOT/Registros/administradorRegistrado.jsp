@@ -19,27 +19,28 @@
         <title>JSP Page</title>
     </head>
     <%  Administrador administrador = new Administrador();
-            LinkedList<String> datos = new LinkedList<>();
-            DataSource dataSource;
-            try {
+        LinkedList<String> datos = new LinkedList<>();
+        DataSource dataSource;
+        try {
 
-                Context initContext = new InitialContext();
-                Context envContext = (Context) initContext.lookup("java:/comp/env");
-                dataSource = (DataSource) envContext.lookup("jdbc/Hospital");
-                datos.add(request.getParameter("codigo"));
-                datos.add(request.getParameter("pass"));
-                datos.add(request.getParameter("nombre"));
-                datos.add(request.getParameter("dpi"));
-                if (administrador.crear(datos, dataSource) == false) {
-                    response.sendRedirect("error.html");
-                } else {
-                    response.getWriter().print("");
-                }
-            } catch (NamingException exe) {
+            Context initContext = new InitialContext();
+            Context envContext = (Context) initContext.lookup("java:/comp/env");
+            dataSource = (DataSource) envContext.lookup("jdbc/Hospital");
+            datos.add(request.getParameter("codigo"));
+            datos.add(request.getParameter("pass"));
+            datos.add(request.getParameter("nombre"));
+            datos.add(request.getParameter("dpi"));
+            if (administrador.crear(datos, dataSource) == false) {
+                response.sendRedirect("error.html");
+            } else {
+                response.getWriter().print("");
             }
+            dataSource.getConnection().close();
+        } catch (NamingException exe) {
+        }
 
 
-        %>
+    %>
     <body>
         <h1>Administrador Registrado!</h1>
     </body>

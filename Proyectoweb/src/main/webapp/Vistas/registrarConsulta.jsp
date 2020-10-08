@@ -90,5 +90,5 @@ and open the template in the editor.
             }
         </script>
     </body>
-
+<% dataSource.getConnection().close(); %>
 </html>

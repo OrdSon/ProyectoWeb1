@@ -7,6 +7,8 @@ package Managers;
 
 import java.io.InputStream;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
@@ -90,5 +92,44 @@ public class Cita extends Manager {
         }
         return true;
 
+    }
+    
+     public LinkedList<String> imprimirCitas(DataSource dataSource) {
+        
+        String query = "select * from Cita where Cita.fecha < curdate();";
+        LinkedList<String> imprimir = new LinkedList<>();
+        try (PreparedStatement estado = dataSource.getConnection().prepareStatement(query);
+                ResultSet resultado = estado.executeQuery()) {
+            ResultSetMetaData meta = resultado.getMetaData();
+            int columnas = meta.getColumnCount();
+            imprimir.add("<table id=\"table\" border = \"1\">");
+            imprimir.add("<tr>"
+                    + "     <th>Codigo</th>"
+                    + "     <th>Fecha</th>"
+                    + "     <th>Hora</th>"
+                    + "     <th>Especialidad</th>"
+                    + "     <th>Examen</th>"
+                    + "     <th>Orden</th>"
+                    + "     <th>Estado</th>"
+                    + "     <th>Paciente</th>"
+                    + "     <th>Medico</th>"
+                    + "   </tr>");
+
+            while (resultado.next()) {
+                imprimir.add("<tr>");
+                for (int i = 0; i < columnas; i++) {
+                    imprimir.add("<td>" + resultado.getString(i + 1) + "</td>");
+                }
+                imprimir.add("</tr>");
+            }
+            imprimir.add("</table>");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
+        if (imprimir.isEmpty()) {
+            return null;
+        }
+        return imprimir;
     }
 }
