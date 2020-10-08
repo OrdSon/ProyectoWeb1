@@ -6,6 +6,7 @@
 package Managers;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
@@ -37,5 +38,22 @@ public class Usuario {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
+    }
+    public LinkedList<String> comprobarUsuario(DataSource dataSource, String usuario, String password){
+        
+        LinkedList<String> datos = new LinkedList<>();
+        
+        String query = "SELECT * FROM Usuario WHERE Usuario.codigo = '"+usuario+"' AND Usuario.contraseña = '"+password+"'";
+        try (PreparedStatement estado = dataSource.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS); 
+                ResultSet result = estado.executeQuery() ) {
+            if (result.next()) {
+                datos.add(result.getString(1));
+                datos.add(result.getString(2));
+                datos.add(result.getString(3));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+        return datos;
     }
 }

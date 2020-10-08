@@ -7,8 +7,11 @@ package Managers;
 
 import java.io.InputStream;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import javax.sql.DataSource;
 import javax.swing.JOptionPane;
 
@@ -38,5 +41,35 @@ public class Orden extends Manager{
                 JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             }
         
+    }
+    public LinkedList<String> imprimirOrdenes(DataSource dataSource) {
+        
+        String query = "SELECT codigo FROM Orden;";
+        LinkedList<String> imprimir = new LinkedList<>();
+        try (PreparedStatement estado = dataSource.getConnection().prepareStatement(query);
+                ResultSet resultado = estado.executeQuery()) {
+            ResultSetMetaData meta = resultado.getMetaData();
+            int columnas = meta.getColumnCount();
+            imprimir.add("<table id=\"tablaOrdenes\" border = \"1\">");
+            imprimir.add("<tr>"
+                    + "     <th>Codigo</th>"
+                    + "   </tr>");
+
+            while (resultado.next()) {
+                imprimir.add("<tr>");
+                for (int i = 0; i < columnas; i++) {
+                    imprimir.add("<td>" + resultado.getString(i + 1) + "</td>");
+                }
+                imprimir.add("</tr>");
+            }
+            imprimir.add("</table>");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
+        if (imprimir.isEmpty()) {
+            return null;
+        }
+        return imprimir;
     }
 }

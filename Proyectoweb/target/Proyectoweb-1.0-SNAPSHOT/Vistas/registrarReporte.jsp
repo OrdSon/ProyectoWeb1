@@ -15,7 +15,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../Estilos/estiloRegistrarMedico.css">
+        <link rel="stylesheet" href="../Estilos/estilo.css">
         <%!DataSource dataSource;%>
         <%
             Cita cita = new Cita();
@@ -34,7 +34,7 @@
     </head>
     <body>
         <div class="envoltura">
-            <div class="titulo">
+            <div class="super__titulo">
                 <h1>Registrar Reporte</h1>
             </div>
             <div class="formulario">

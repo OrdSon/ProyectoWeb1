@@ -7,6 +7,7 @@ Managers/EspecialidadMedico.class
 Managers/Medico.class
 Managers/Paciente.class
 Managers/Examen.class
+Managers/Resultado.class
 Managers/Especialidad.class
 Managers/Administrador.class
 Managers/Reporte.class

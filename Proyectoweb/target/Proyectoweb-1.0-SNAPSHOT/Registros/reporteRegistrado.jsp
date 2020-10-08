@@ -30,8 +30,10 @@
                 dataSource = (DataSource) envContext.lookup("jdbc/Hospital");
                 
                 datos.add(request.getParameter("codigo"));
-                datos.add(request.getParameter("descripcion"));
-                datos.add(request.getParameter("cita"));
+                datos.add(request.getParameter("reporte"));
+                datos.add(request.getParameter("examen"));
+                datos.add(request.getParameter("laboratorista"));
+                datos.add(request.getParameter("orden"));
                 
                 reporte.crear(dataSource, datos);
             } catch (NamingException exe) {

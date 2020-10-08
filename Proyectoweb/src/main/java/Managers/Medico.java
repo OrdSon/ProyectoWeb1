@@ -136,4 +136,42 @@ public class Medico extends Manager {
         }
         return imprimir;
     }
+    public LinkedList<String> querys(DataSource dataSource, String query) {
+        
+        LinkedList<String> imprimir = new LinkedList<>();
+        try (PreparedStatement estado = dataSource.getConnection().prepareStatement(query);
+                ResultSet resultado = estado.executeQuery()) {
+            ResultSetMetaData meta = resultado.getMetaData();
+            int columnas = meta.getColumnCount();
+            imprimir.add("<table id=\"table\" border = \"1\">");
+            imprimir.add("<tr>"
+                    + "     <th>Especialidad</th>"
+                    + "     <th>Codigo</th>"
+                    + "     <th>Nombre</th>"
+                    + "     <th>Hora inicio</th>"
+                    + "     <th>Hora salida</th>"
+                    + "     <th>Hora E-mail</th>"
+                    + "     <th>Hora DPI</th>"
+                    + "     <th>Hora Numero colegiado</th>"
+                    + "     <th>Hora Fecha debut</th>"
+                    + "   </tr>");
+
+            while (resultado.next()) {
+                imprimir.add("<tr>");
+                for (int i = 0; i < columnas; i++) {
+                    imprimir.add("<td>" + resultado.getString(i + 1) + "</td>");
+                }
+                imprimir.add("</tr>");
+            }
+            imprimir.add("</table>");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
+        if (imprimir.isEmpty()) {
+            return null;
+        }
+        return imprimir;
+    }
+    
 }
