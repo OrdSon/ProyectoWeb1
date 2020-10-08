@@ -8,6 +8,10 @@
         <servlet-name>labRegistrado</servlet-name>
         <servlet-class>labRegistrado</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>citaRegistrada</servlet-name>
+        <servlet-class>servlets.citaRegistrada</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>primeraPrueba</servlet-name>
         <url-pattern>/Ricardo</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>labRegistrado</servlet-name>
         <url-pattern>/labRegistrado</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>citaRegistrada</servlet-name>
+        <url-pattern>/cita</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

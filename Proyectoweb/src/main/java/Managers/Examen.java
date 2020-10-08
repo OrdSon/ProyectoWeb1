@@ -7,6 +7,7 @@ package Managers;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
@@ -43,7 +44,7 @@ public class Examen extends Manager{
         return true;
     }
     
-    public LinkedList obtenerOpciones(DataSource dataSource){
+    public LinkedList<String> obtenerOpciones(DataSource dataSource){
         String query = "SELECT nombre FROM Examen";
         LinkedList<String> opciones = new LinkedList<>();
         try (PreparedStatement estado = dataSource.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS); 
@@ -60,6 +61,38 @@ public class Examen extends Manager{
             return null;
         }
         return opciones;
+    }
+    public LinkedList <String> imprimirTabla(DataSource dataSource){
+        LinkedList <String> examenes = new LinkedList<>();
+        String query = "SELECT codigo, nombre, descripcion, orden FROM Examen";
+        try (PreparedStatement estado = dataSource.getConnection().prepareStatement(query);
+                ResultSet resultado = estado.executeQuery()) {
+            ResultSetMetaData meta = resultado.getMetaData();
+            int columnas = meta.getColumnCount();
+
+            examenes.add("<table id=\"tablaExamenes\" border=\"1\">");
+            examenes.add("<tr>"
+                    + "     <th>Codigo</th>"
+                    + "     <th>Nombre</th>"
+                    + "     <th>Descripcion</th>"
+                    + "     <th>orden</th>"
+                    + "   </tr>");
+
+            while (resultado.next()) {
+                examenes.add("<tr>");
+                for (int i = 0; i < columnas; i++) {
+                    examenes.add("<td>" + resultado.getString(i + 1) + "</td>");
+                }
+                examenes.add("</tr>");
+            }
+
+            examenes.add("</table>");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
+        return examenes;
     }
     
 }

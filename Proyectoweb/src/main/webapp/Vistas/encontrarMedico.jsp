@@ -4,6 +4,7 @@
     Author     : samuelson
 --%>
 
+<%@page import="Managers.Examen"%>
 <%@page import="Managers.Especialidad"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="servlets.servlet"%>
@@ -29,7 +30,9 @@
         <link rel="stylesheet" href="../Estilos/estilo.css">
         <title>Buscar Medico</title>
         <%! Medico medico = new Medico();
-            Especialidad especialidad = new Especialidad();%>
+            Especialidad especialidad = new Especialidad();
+            Examen examen = new Examen();
+        %>
         <%!DataSource dataSource;%>
         <%
             try {
@@ -46,51 +49,77 @@
         %>
     </head>
     <body>
-        <div class="envoltura">
-            <div class="super__titulo">
-                <h1>Agendar Cita</h1>
-            </div>
-            <div class="formulario">
-                <form method="post" action="../Registros/citaRegistrada.jsp">
-                    <div class="entradas">
-                        <label> Codigo de Cita: </label>
-                        <input type="text" class="input" name="codigoCita" id="codigoCita" requiered>
+        <div class="form__principal">
+            <form method="post" enctype="multipart/form-data" action="../cita">
+                <div class="envoltura">
+                    <div class="super__titulo">
+                        <h1>Agendar Cita</h1>
                     </div>
-                    <div class="entradas">
-                        <label> Codigo de Médico: </label>
-                        <input type="text" class="input" name="codigo" id="codigo" requiered>
+                    <div class="formulario">
+
+                        <div class="entradas">
+                            <label> Codigo de Cita: </label>
+                            <input type="text" class="input" name="codigoCita" id="codigoCita" requiered>
+                        </div>
+                        <div class="entradas">
+                            <label> Codigo de Médico: </label>
+                            <input type="text" class="input" name="codigo" id="codigo" requiered>
+                        </div>
+                        <div class="entradas">
+                            <label> Especialidad: </label>
+                            <input type="text" class="input" name="especialidad" id="especialidad" requiered>
+                        </div>
+                        <div class="entradas">
+                            <label> Nombre: </label>
+                            <input type="text" class="input" name="nombre" id="nombre">
+                        </div>
+                        <div class="entradas">
+                            <label> Fecha: </label>
+                            <input type="date" class="input" name="fecha" id="fecha" requiered>
+                        </div>
+                        <div class="entradas">
+                            <label> Hora: </label>
+                            <input type="time" class="input" name="hora" id="hora" requiered>
+                        </div>
+
+                        <div class="enviar">
+                            <input type="button" onclick="mostrar()" class="boton" value="Cita para examen">
+                            <label> Enviar </label>
+                            <input type="submit" name="boton" class="boton">
+                        </div>
+
                     </div>
-                    <div class="entradas">
-                        <label> Especialidad: </label>
-                        <input type="text" class="input" name="especialidad" id="especialidad" requiered>
-                    </div>
-                    <div class="entradas">
-                        <label> Nombre: </label>
-                        <input type="text" class="input" name="nombre" id="nombre">
-                    </div>
-                    <div class="entradas">
-                        <label> Fecha: </label>
-                        <input type="date" class="input" name="fecha" id="fecha" requiered>
-                    </div>
-                    <div class="entradas">
-                        <label> Hora: </label>
-                        <input type="time" class="input" name="hora" id="hora" requiered>
-                    </div>
-                    <div class="entradas">
-                        <label>Tipo de cita: </label>
-                        <div class="custom__select">
-                            <select name="tipo">
-                                <option value="consulta">Consulta</option>
-                                <option value="examen">Examen</option>
-                            </select>
+                </div>
+                <div id="body">
+                    <div class="subapartado" id="examen">
+                        <div class="titulo">
+                            <p class="titulo">Establecer examen</p>                    
+                        </div>
+                        <div class="info">
+
+                            <%                        LinkedList<String> examenes = examen.imprimirTabla(dataSource);
+                                for (int i = 0; i < examenes.size(); i++) {
+                                    out.print(examenes.get(i));
+                                }
+                            %>
+                        </div>
+                        <div class="info">
+
+                            <div class="entradas">
+                                <label> Codigo de examen: </label>
+                                <input type="text" class="input" name="codigoExamen" id="codigoExamen" requiered>
+                            </div>
+
+                            <div class="entradas" id="orden">
+                                <label>Adjuntar orden:</label>
+                                <input type="file" class="input" name="ordenArchivo" id="ordenArchivo">
+                            </div>
+
                         </div>
                     </div>
-                    <div class="entradas">
-                        <input type="submit" name="boton" class="boton">
-                    </div>
-                </form>
-            </div>
-        </div>  
+                </div>
+            </form>
+        </div>
         <div id="body">
 
             <div class="subapartado">
@@ -100,6 +129,7 @@
                 </div>
 
                 <div class="info">
+
                     <form action="encontrarMedico.jsp" method="POST">
                         <input type="text" class="input" name="buscarNombre">
                         <input type="submit">
@@ -113,26 +143,13 @@
                             }
                         %>
 
-                        <script>
-                            var table = document.getElementById('table');
-
-                            for (var i = 1; i < table.rows.length; i++)
-                            {
-                                table.rows[i].onclick = function ()
-                                {
-                                    document.getElementById("codigo").value = this.cells[1].innerHTML;
-                                    document.getElementById("especialidad").value = this.cells[0].innerHTML;
-                                    document.getElementById("nombre").value = this.cells[2].innerHTML;
-                                };
-                            }
-                        </script>
                     </form>
 
                 </div>
 
             </div>
 
-            <div class="subapartado">
+            <div class="subapartado" id="control">
 
                 <div class="titulo">
                     <p class="titulo">Buscar por especialidad:</p>
@@ -169,28 +186,15 @@
                     <div>
                         <%
                             LinkedList<String> medicos = medico.imprimirMedicos(dataSource, especialidad.armarQuery(request, dataSource));
-                            if (medicos!= null) {
+                            if (medicos != null) {
                                 for (int i = 0; i < medicos.size(); i++) {
                                     out.print(medicos.get(i));
                                 }
                             }%>
                     </div>
                 </div>
-                <script>
-                    var expanded = false;
-
-                    function showCheckboxes() {
-                        var checkboxes = document.getElementById("checkboxes");
-                        if (!expanded) {
-                            checkboxes.style.display = "block";
-                            expanded = true;
-                        } else {
-                            checkboxes.style.display = "none";
-                            expanded = false;
-                        }
-                    }
-                </script>
             </div>
+
             <!--
                         <div class="subapartado">
             
@@ -207,6 +211,59 @@
 
 
         </div>
+        <script>
+            var expandido = false;
+            var divisor = document.getElementById("examen");
+            var extra = document.getElementById("orden");
+            var table = document.getElementById('table');
+            var tablaExamenes = document.getElementById('tablaExamenes');
+            divisor.style.display = "none";
+            extra.style.display = "none";
 
+            for (var i = 1; i < table.rows.length; i++)
+            {
+                table.rows[i].onclick = function ()
+                {
+                    document.getElementById("codigo").value = this.cells[1].innerHTML;
+                    document.getElementById("especialidad").value = this.cells[0].innerHTML;
+                    document.getElementById("nombre").value = this.cells[2].innerHTML;
+                };
+            }
+
+            for (var i = 1; i < tablaExamenes.rows.length; i++)
+            {
+                tablaExamenes.rows[i].onclick = function ()
+                {
+                    document.getElementById("codigoExamen").value = this.cells[0].innerHTML;
+                    if (this.cells[3].innerHTML === "true") {
+                        extra.style.display = "block";
+                        document.getElementById("ordenArchivo").required = false;
+                    } else {
+                        extra.style.display = "none";
+                        document.getElementById("ordenArchivo").required = true;
+                    }
+                };
+            }
+
+            function showCheckboxes() {
+                var checkboxes = document.getElementById("checkboxes");
+                if (!expandido) {
+                    checkboxes.style.display = "block";
+                    expandido = true;
+                } else {
+                    checkboxes.style.display = "none";
+                    expandido = false;
+                }
+            }
+
+
+            function mostrar() {
+                if (divisor.style.display === "none") {
+                    divisor.style.display = "block";
+                } else {
+                    divisor.style.display = "none";
+                }
+            }
+        </script>
     </body>
 </html>

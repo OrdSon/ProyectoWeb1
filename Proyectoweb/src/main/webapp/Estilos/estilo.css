@@ -151,6 +151,7 @@ estilo*/
 }
 
 
+
 .envoltura .formulario .entradas:last-child{
     margin-bottom: 0;
 }
@@ -163,7 +164,7 @@ div#body{
 	margin:40px auto;
 	width:1100px;
 	min-height:50px;
-	background-color: red;
+	background-color: #ccccff;
 	overflow: hidden;
 	border-radius: 5px;
 }

@@ -5,11 +5,13 @@
 /home/samuelson/Documentos/Web/Proyectoweb/src/main/java/servlets/servlet.java
 /home/samuelson/Documentos/Web/Proyectoweb/src/main/java/Managers/Cita.java
 /home/samuelson/Documentos/Web/Proyectoweb/src/main/java/Managers/Medico.java
+/home/samuelson/Documentos/Web/Proyectoweb/src/main/java/Managers/Orden.java
 /home/samuelson/Documentos/Web/Proyectoweb/src/main/java/Managers/Manager.java
 /home/samuelson/Documentos/Web/Proyectoweb/src/main/java/Managers/Paciente.java
 /home/samuelson/Documentos/Web/Proyectoweb/src/main/java/Managers/Administrador.java
 /home/samuelson/Documentos/Web/Proyectoweb/src/main/java/NewServlet.java
 /home/samuelson/Documentos/Web/Proyectoweb/src/main/java/Managers/Especialidad.java
+/home/samuelson/Documentos/Web/Proyectoweb/src/main/java/servlets/citaRegistrada.java
 /home/samuelson/Documentos/Web/Proyectoweb/src/main/java/Managers/EspecialidadMedico.java
 /home/samuelson/Documentos/Web/Proyectoweb/src/main/java/Constantes/Constantes.java
 /home/samuelson/Documentos/Web/Proyectoweb/src/main/java/Managers/Lector.java
